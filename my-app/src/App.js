@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 const api = {
+  // locationKey: "12985_PC",
+  // apiKey:"B9C5mF41beHh5MAbyZ5RZZ9ZASnShtqc"
+
+ 
   key: "83d7ca45e5bf04bd3028895e0925ce28",
-  base:"https://api.openweathermap.org/data/2.5/"
+  base:"http://api.openweathermap.org/data/2.5/"
 }
 
-function App() {
+    function App() {
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState({});
+    
 
   //   const fetchWeather = async (e) =>{
   //   e.preventDefault();
   //   const response = 
-  //   await axios.get('https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ })'
+  //   await axios.get('https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey})'
   //  );
   //     setWeather(response.data);
-  
-  
-  //    };
-
-  const search = evt =>{
+      const search = evt =>{
     if (evt.key ==="Enter"){
-      fetch('http://dataservice.accuweather.com/forecasts/v1/daily/5day/locationKey=12985_PC?apikey=B9C5mF41beHh5MAbyZ5RZZ9ZASnShtqc')
+      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
       .then(res => res.json())
       .then(result =>{ 
         setWeather(result);
@@ -36,10 +37,10 @@ function App() {
 
   let day = days[d.getDay()];
   let date = d.getDate();
-  let month = months[d.getMonths()];
+  let month = months[d.getMonth()];
   let year = d.getFullYear();
 
-  return '${day} ${date} ${month} ${year}'
+  return `${day} ${date} ${month} ${year}`
   }
 
   return (
@@ -83,5 +84,6 @@ function App() {
     </div>
   );
           }
+          
 
 export default App;
