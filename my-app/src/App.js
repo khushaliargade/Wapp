@@ -8,9 +8,19 @@ function App() {
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState({});
 
+  //   const fetchWeather = async (e) =>{
+  //   e.preventDefault();
+  //   const response = 
+  //   await axios.get('https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ })'
+  //  );
+  //     setWeather(response.data);
+  
+  
+  //    };
+
   const search = evt =>{
-    if (evt.key =="Enter"){
-      fetch('${api.base}weather?q=${query}&units=metric&APPID=${api.key}')
+    if (evt.key ==="Enter"){
+      fetch('http://dataservice.accuweather.com/forecasts/v1/daily/5day/locationKey=12985_PC?apikey=B9C5mF41beHh5MAbyZ5RZZ9ZASnShtqc')
       .then(res => res.json())
       .then(result =>{ 
         setWeather(result);
@@ -55,7 +65,7 @@ function App() {
         <div>
             <div>
             <div className="location-box">
-              <div className="location">{weather.name},{weather.sys.country}</div>
+              <div className="location">{weather.name},{weather.sys.country}</div>  
               <div className="date">{dateBuilder(new Date())}</div>
           
           </div>
@@ -72,5 +82,6 @@ function App() {
       </main>
     </div>
   );
-}
+          }
+
 export default App;
